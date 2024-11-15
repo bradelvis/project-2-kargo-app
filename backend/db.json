@@ -1,0 +1,154 @@
+{
+  "cargo": [
+    {
+      "id": "5",
+      "category": "Hazardous Cargo",
+      "name": "Chemical Solvent",
+      "description": "High-risk chemical solvents for industrial use.",
+      "weight": "5000 kg",
+      "status": "Awaiting Dispatch",
+      "conditionRating": 3,
+      "image": "kar-go/src/assets/Photo images/chemical solvent.jpeg"
+    },
+    {
+      "id": "7",
+      "category": "Hazardous Cargo",
+      "name": "Flammable Liquids",
+      "description": "Large shipment of flammable industrial oils.",
+      "weight": "3000 kg",
+      "status": "In Storage",
+      "conditionRating": 3,
+      "image": "kar-go/src/assets/Photo images/Flammable Liquid .jpeg"
+    },
+    {
+      "id": "8",
+      "category": "Hazardous Cargo",
+      "name": "Explosive Material",
+      "description": "Explosive materials for mining purposes.",
+      "weight": "1200 kg",
+      "status": "Awaiting Dispatch",
+      "conditionRating": 2,
+      "image": "kar-go/src/assets/Photo images/explosive material.jpeg"
+    },
+    {
+      "id": "9",
+      "category": "Refrigerated Cargo",
+      "name": "Fresh Salmon",
+      "description": "Shipment of frozen salmon.",
+      "weight": "1000 kg",
+      "status": "Delivered",
+      "conditionRating": 5,
+      "image": "kar-go/src/assets/Photo images/refrigerated goods.jpeg"
+    },
+    {
+      "id": "10",
+      "category": "Refrigerated Cargo",
+      "name": "Vaccines",
+      "description": "Medical vaccines requiring cold storage.",
+      "weight": "500 kg",
+      "status": "In Storage",
+      "conditionRating": 5,
+      "image": "kar-go/src/assets/Photo images/medical vaccines.png"
+    },
+    {
+      "id": "11",
+      "category": "Refrigerated Cargo",
+      "name": "Dairy Products",
+      "description": "Milk, cheese, and yogurt products kept in cold storage.",
+      "weight": "1500 kg",
+      "status": "In Transit",
+      "conditionRating": 4,
+      "image": "kar-go/src/assets/Photo images/dairy products.jpeg"
+    },
+    {
+      "id": "12",
+      "category": "Refrigerated Cargo",
+      "name": "Frozen Meat",
+      "description": "Assorted frozen meat products.",
+      "weight": "2000 kg",
+      "status": "Awaiting Dispatch",
+      "conditionRating": 5,
+      "image": "kar-go/src/assets/Photo images/frozen meat.jpeg"
+    },
+    {
+      "id": "13",
+      "category": "General Cargo",
+      "name": "Electronics",
+      "description": "Assorted electronics including laptops and phones.",
+      "weight": "3000 kg",
+      "status": "In Transit",
+      "conditionRating": 4,
+      "image": "kar-go/src/assets/Photo images/electronics.jpeg"
+    },
+    {
+      "id": "14",
+      "category": "General Cargo",
+      "name": "Furniture",
+      "description": "Assorted office furniture items.",
+      "weight": "1200 kg",
+      "status": "Awaiting Dispatch",
+      "conditionRating": 5,
+      "image": "kar-go/src/assets/Photo images/furniture.jpeg"
+    },
+    {
+      "id": "15",
+      "category": "General Cargo",
+      "name": "Clothing",
+      "description": "Boxes of assorted clothing items.",
+      "weight": "2000 kg",
+      "status": "Delivered",
+      "conditionRating": 4,
+      "image": "kar-go/src/assets/Photo images/clothes.jpeg"
+    },
+    {
+      "id": "16",
+      "category": "General Cargo",
+      "name": "Stationery",
+      "description": "Bulk order of office stationery supplies.",
+      "weight": "500 kg",
+      "status": "In Storage",
+      "conditionRating": 5,
+      "image": "kar-go/src/assets/Photo images/stationary.jpeg"
+    },
+    {
+      "id": "17",
+      "category": "General Cargo",
+      "name": "Automobile Parts",
+      "description": "Assorted vehicle spare parts.",
+      "weight": "4000 kg",
+      "status": "In Transit",
+      "conditionRating": 3,
+      "image": "kar-go/src/assets/Photo images/automotor.jpeg"
+    },
+    {
+      "id": "2c6c",
+      "name": "canned fish",
+      "status": "delivered",
+      "damage": false
+    },
+    {
+      "id": "63cc",
+      "name": "canned fish",
+      "status": "delivered",
+      "damage": true
+    },
+    {
+      "id": "a891",
+      "name": "canned fish",
+      "status": "delivered",
+      "damage": true
+    },
+    {
+      "id": "2833",
+      "name": "canned fish",
+      "status": "delivered",
+      "damage": true
+    },
+    {
+      "id": "bf00",
+      "name": "salmon",
+      "status": "in storage",
+      "damage": false
+    }
+  ]
+}

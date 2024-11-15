@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kar-go App</title>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <!-- Link to the CSS file -->
+  <link rel="stylesheet" href="/path/to/app.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="logo">
+      <img src="./src/assets/Photo images/top logo.png" alt="Logo" width="50">
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+    </div>
+    <div class="right-section">
+      <div class="cart">
+        <img src="./src/assets/Photo images/shoppingcart.jpeg" alt="Cart" width="20">
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-btn">▼</button>
+        <div class="dropdown-content">
+          <a href="#">Bulk Cargo</a>
+          <a href="#">Hazardous Cargo</a>
+          <a href="#">Refrigerated Cargo</a>
+          <a href="#">General Cargo</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cargo Buttons Section -->
+  <div class="cargo-container">
+    <a href="bulk-cargo.html" class="cargo-button">
+      <img src="./src/assets/Photo images/Bulk cargo truck.jpeg" alt="Bulk Cargo">
+    </a>
+    <a href="hazardous-cargo.html" class="cargo-button">
+      <img src="./src/assets/Photo images/hazadaous truck.jpeg" alt="Hazardous Cargo">
+    </a>
+    <a href="refrigerated-cargo.html" class="cargo-button">
+      <img src="./src/assets/Photo images/refrigerated goods.jpeg" alt="Refrigerated Cargo">
+    </a>
+    <a href="general-cargo.html" class="cargo-button">
+      <img src="./src/assets/Photo images/9b458bda-3040-471c-ac6f-fcc3837a7d27.jpeg" alt="General Cargo">
+    </a>
+  </div>
+
+  <!-- Root Div for React (if needed) -->
+  <div id="root"></div>
+  
+  <!-- JavaScript for Dropdown Toggle -->
+  <script>
+    document.addEventListener('click', function (e) {
+      const dropdownContent = document.querySelector('.dropdown-content');
+      const isDropdownButton = e.target.matches('.dropdown-btn');
+      if (!isDropdownButton) {
+        dropdownContent.classList.remove('show');
+      } else {
+        dropdownContent.classList.toggle('show');
+      }
+    });
+  </script>
+
+  <!-- Import React App -->
+  <script type="module" src="/src/main.jsx"></script>
+
+</body>
+</html>

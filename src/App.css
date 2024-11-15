@@ -1,0 +1,264 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f7f6;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+  color: #2d3e50;
+}
+
+button {
+  background-color: #4b5d6c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3a4c60;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #4b5d6c;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d3e50;
+  padding: 10px 20px;
+  color: white;
+}
+
+.navbar-brand h2 {
+  font-size: 24px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links li {
+  display: inline;
+}
+
+.navbar-links a {
+  font-size: 18px;
+  padding: 5px 10px;
+}
+
+.navbar-links a:hover {
+  background-color: #4b5d6c;
+  border-radius: 5px;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #2d3e50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.footer .footer-links {
+  margin-top: 10px;
+  list-style: none;
+}
+
+.footer .footer-links a {
+  margin: 0 15px;
+  font-size: 16px;
+}
+
+.footer .footer-links a:hover {
+  color: #4b5d6c;
+}
+
+/* Main App Layout */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Cargo List Styles */
+.cargo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.cargo-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cargo-item h3 {
+  font-size: 18px;
+}
+
+.cargo-item p {
+  font-size: 14px;
+  color: #666;
+}
+
+.cargo-item button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: #f44336;
+}
+
+.cargo-item button:hover {
+  background-color: #d32f2f;
+}
+
+/* Cargo Form Styles */
+.cargo-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.cargo-form input,
+.cargo-form button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.cargo-form input:focus,
+.cargo-form button:focus {
+  border-color: #4b5d6c;
+}
+
+.cargo-form button {
+  background-color: #4b5d6c;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.cargo-form button:hover {
+  background-color: #3a4c60;
+}
+
+/* Cargo Detail Styles */
+.cargo-detail {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.cargo-detail h2 {
+  font-size: 22px;
+  color: #333;
+}
+
+.cargo-detail p {
+  font-size: 16px;
+  color: #666;
+}
+
+.cargo-detail .damage {
+  font-weight: bold;
+  color: #f44336;
+}
+
+/* Rating System Styles */
+.rating {
+  display: flex;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.rating button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #ffb400;
+  cursor: pointer;
+}
+
+.rating button:hover,
+.rating button.active {
+  color: #ffcc00;
+}
+
+/* Comment Section Styles */
+.comment-section {
+  margin-top: 20px;
+}
+
+.comment-section textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  min-height: 100px;
+}
+
+.comment-section button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #4b5d6c;
+  color: white;
+  cursor: pointer;
+}
+
+.comment-section button:hover {
+  background-color: #3a4c60;
+}
