@@ -50,6 +50,50 @@
 2. # **Five-Star Rating System**:  
    # Introduce a rating system to evaluate the state or quality of cargo based on its condition.  
 
+# **Project structure **:
+kar-go/
+├── backend/
+│   ├── db.json
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── server.js
+│   └── .gitignore
+├── frontend/
+│   ├── public/
+│   │   ├── index.html
+│   │   └── vite.svg
+│   ├── src/
+│   │   ├── assets/
+│   │   │   └── logo.png
+│   │   ├── components/
+│   │   │   ├── CargoList.js
+│   │   │   ├── CargoDetails.js
+│   │   │   ├── CargoForm.js
+│   │   │   ├── CommentSection.js
+│   │   │   ├── Footer.js
+│   │   │   ├── Navbar.js
+│   │   │   ├── Rating.js
+│   │   │   ├── Search.js
+│   │   │   └── CargoItem.js
+│   │   ├── pages/
+│   │   │   ├── About.js
+│   │   │   ├── CargoManagement.js
+│   │   │   └── Home.js
+│   │   ├── services/
+│   │   │   ├── app.css
+│   │   │   ├── app.jsx
+│   │   │   ├── index.css
+│   │   │   ├── index.js
+│   │   │   └── main.js
+│   │   ├── styles/
+│   │   │   └── styles.css
+│   │   ├── routes/
+│   │   │   └── AppRoutes.js
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
+├── README.md
 ---
 
 ## **How to Run the Application**  
