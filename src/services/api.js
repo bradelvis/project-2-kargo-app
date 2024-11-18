@@ -1,6 +1,6 @@
 // services/api.js
 
-const API_URL = 'http://localhost:5000/cargo';
+const API_URL = 'http://localhost:3000/cargo'; // Replace with your backend URL
 
 // Fetch all cargo items
 export const getCargo = async () => {
@@ -9,15 +9,14 @@ export const getCargo = async () => {
     if (!response.ok) {
       throw new Error('Failed to fetch cargo');
     }
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     console.error('Error fetching cargo data:', error);
     throw error;
   }
 };
 
-// Add a new cargo
+// Add a new cargo item
 export const addCargo = async (cargo) => {
   try {
     const response = await fetch(API_URL, {
@@ -30,14 +29,14 @@ export const addCargo = async (cargo) => {
     if (!response.ok) {
       throw new Error('Failed to add cargo');
     }
-    return response.json();
+    return await response.json();
   } catch (error) {
     console.error('Error adding cargo:', error);
     throw error;
   }
 };
 
-// Delete cargo by ID
+// Delete cargo item by ID
 export const deleteCargo = async (id) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
@@ -50,7 +49,7 @@ export const deleteCargo = async (id) => {
   }
 };
 
-// Update an existing cargo
+// Update cargo item by ID
 export const updateCargo = async (id, updatedCargo) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, {
@@ -63,9 +62,23 @@ export const updateCargo = async (id, updatedCargo) => {
     if (!response.ok) {
       throw new Error('Failed to update cargo');
     }
-    return response.json();
+    return await response.json();
   } catch (error) {
     console.error('Error updating cargo:', error);
+    throw error;
+  }
+};
+
+// Search for cargo by name or status
+export const searchCargo = async (query) => {
+  try {
+    const response = await fetch(`${API_URL}?search=${query}`);
+    if (!response.ok) {
+      throw new Error('Failed to search cargo');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error searching cargo:', error);
     throw error;
   }
 };

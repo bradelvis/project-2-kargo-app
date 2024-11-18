@@ -71,16 +71,6 @@
       "image": "kar-go/src/assets/Photo images/frozen meat.jpeg"
     },
     {
-      "id": "13",
-      "category": "General Cargo",
-      "name": "Electronics",
-      "description": "Assorted electronics including laptops and phones.",
-      "weight": "3000 kg",
-      "status": "In Transit",
-      "conditionRating": 4,
-      "image": "kar-go/src/assets/Photo images/electronics.jpeg"
-    },
-    {
       "id": "14",
       "category": "General Cargo",
       "name": "Furniture",
@@ -149,6 +139,12 @@
       "name": "salmon",
       "status": "in storage",
       "damage": false
+    },
+    {
+      "name": "salmon",
+      "status": "in storage",
+      "damage": false,
+      "id": "QCV8aiZ"
     }
   ]
 }

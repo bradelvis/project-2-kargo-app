@@ -1,56 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Updated import for React Router v6
-import Navbar from './components/Navbar'; // Importing Navbar
-import Footer from './components/Footer'; // Importing Footer
-import CargoList from './components/CargoList'; // Importing CargoList
-import CargoForm from './components/CargoForm'; // Importing CargoForm
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar'; // Import Navbar component
+import Footer from './components/Footer'; // Import Footer component
+import CargoList from './components/CargoList'; // Import CargoList component
+import CargoForm from './components/CargoForm'; // Import CargoForm component
+import Search from './components/Search'; // Import Search component
 import Home from './pages/Home'; // Home page
 import About from './pages/About'; // About page
-import { getCargo, addCargo, deleteCargo, updateCargo } from './services/api';  // Import all necessary API functions
-import './App.css';  // Adjusted path for App.css inside the src folder
+import CargoManagement from './pages/CargoManagement';
+import { getCargo, addCargo, deleteCargo, updateCargo } from './services/api'; // API functions
+import "./App.css"; // for files in the same directory
+
 
 function App() {
   const [cargoData, setCargoData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // Search state to filter cargos
+
 
   // Fetch cargo data on mount
   useEffect(() => {
-    getCargo().then((data) => setCargoData(data));
+    getCargo().then((data) => setCargoData(data)).catch((err) => console.error('Error loading cargo data:', err));
   }, []);
 
   // Handle adding cargo
   const handleAddCargo = (cargo) => {
     addCargo(cargo).then((newCargo) => {
       setCargoData((prevData) => [...prevData, newCargo]);
-    });
+    }).catch((err) => console.error('Error adding cargo:', err));
   };
 
   // Handle deleting cargo
   const handleDeleteCargo = (id) => {
     deleteCargo(id).then(() => {
       setCargoData((prevData) => prevData.filter((cargo) => cargo.id !== id));
-    });
+    }).catch((err) => console.error('Error deleting cargo:', err));
   };
 
   // Handle updating cargo details
-  const handleUpdateCargo = (updatedCargo) => {
-    updateCargo(updatedCargo).then(() => {
+  const handleUpdateCargo = (id, updatedCargo) => {
+    updateCargo(id, updatedCargo).then((updated) => {
       setCargoData((prevData) =>
-        prevData.map((cargo) =>
-          cargo.id === updatedCargo.id ? updatedCargo : cargo
-        )
+        prevData.map((cargo) => (cargo.id === id ? updated : cargo))
       );
-    });
+    }).catch((err) => console.error('Error updating cargo:', err));
   };
+ // Handle search input change
+ const handleSearchChange = (term) => {
+  setSearchTerm(term);
+};
+  // Filter cargos based on search term
+  const filteredCargos = cargoData.filter(cargo => 
+    cargo.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <Router>
       <div className="app">
-        <Navbar />  {/* Navigation bar */}
-
-        {/* Main content */}
+        <Navbar />
         <div className="main-content">
           <Routes>
-            {/* Routes for different pages */}
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/cargo-management" element={
@@ -64,12 +72,11 @@ function App() {
                 />
               </>
             } />
-            {/* Default Route */}
+            <Route path="/search" element={<Search />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </div>
-
-        <Footer />  {/* Footer */}
+        <Footer />
       </div>
     </Router>
   );

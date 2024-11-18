@@ -1,111 +1,108 @@
+// pages/CargoManagement.jsx
+
 import React, { useState, useEffect } from 'react';
-import CargoForm from '../components/CargoForm'; // Import CargoForm
-import CargoList from '../components/CargoList'; // Import CargoList
-
+import CargoForm from '../components/CargoForm'; 
+import CargoList from '../components/CargoList'; 
+import Search from '../components/Search'; 
+import { getCargo, addCargo, deleteCargo, updateCargo, searchCargo } from '../services/api';
+import "../App.css"; 
 function CargoManagement() {
-  const [cargoData, setCargoData] = useState([]); // State to store cargo data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(''); // Error state
+  const [cargoData, setCargoData] = useState([]); // All cargo items
+  const [editingCargo, setEditingCargo] = useState(null); // For editing a cargo item
+  const [searchResults, setSearchResults] = useState([]); // For holding search results
 
-  // Fetch cargo data when the component mounts
+  // Fetch cargo data on initial load
   useEffect(() => {
-    const fetchCargoData = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/cargos'); // Fetch cargo list from db.json (assuming json-server is running)
-        const data = await response.json();
-        setCargoData(data); // Update state with fetched data
-      } catch (err) {
-        setError('Failed to fetch cargo data. Please try again later.');
-        console.error('Error fetching cargo data:', err);
-      } finally {
-        setLoading(false); // End loading state after fetch
-      }
-    };
-
     fetchCargoData();
   }, []);
 
-  // Handle adding cargo (onAddCargo)
-  const onAddCargo = async (cargo) => {
+  const fetchCargoData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/cargos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cargo),
-      });
-
-      const newCargo = await response.json(); // Assuming the response contains the newly added cargo
-      setCargoData((prevData) => [...prevData, newCargo]); // Update state with new cargo
-    } catch (err) {
-      setError('Failed to add cargo. Please try again later.');
-      console.error('Error adding cargo:', err);
+      const data = await getCargo();
+      setCargoData(data);
+      setSearchResults(data); // Initially, search results are the same as cargo data
+    } catch (error) {
+      console.error('Error fetching cargo data:', error);
     }
   };
 
-  // Handle deleting cargo (onDeleteCargo)
-  const onDeleteCargo = async (cargoId) => {
+  // Handle adding new cargo
+  const handleAddCargo = async (cargo) => {
     try {
-      const response = await fetch(`http://localhost:5000/cargos/${cargoId}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        // After successful deletion, filter the cargo from the state
-        setCargoData((prevData) => prevData.filter((cargo) => cargo.id !== cargoId));
-      } else {
-        throw new Error('Failed to delete cargo');
-      }
-    } catch (err) {
-      setError('Failed to delete cargo. Please try again later.');
-      console.error('Error deleting cargo:', err);
+      const newCargo = await addCargo(cargo);
+      setCargoData([...cargoData, newCargo]);
+      setSearchResults([...cargoData, newCargo]); // Add to search results as well
+    } catch (error) {
+      console.error('Error adding cargo:', error);
     }
   };
 
-  // Handle updating cargo (onUpdateCargo)
-  const onUpdateCargo = async (updatedCargo) => {
+  // Handle deleting a cargo item
+  const handleDeleteCargo = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/cargos/${updatedCargo.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedCargo),
-      });
+      await deleteCargo(id);
+      const updatedCargoData = cargoData.filter((cargo) => cargo.id !== id);
+      setCargoData(updatedCargoData);
+      setSearchResults(updatedCargoData); // Update search results after deletion
+    } catch (error) {
+      console.error('Error deleting cargo:', error);
+    }
+  };
 
-      if (response.ok) {
-        const updatedCargoData = await response.json();
-        setCargoData((prevData) =>
-          prevData.map((cargo) =>
-            cargo.id === updatedCargoData.id ? updatedCargoData : cargo
-          )
-        );
-      } else {
-        throw new Error('Failed to update cargo');
-      }
-    } catch (err) {
-      setError('Failed to update cargo. Please try again later.');
-      console.error('Error updating cargo:', err);
+  // Handle editing a cargo item
+  const handleEditCargo = (cargo) => {
+    setEditingCargo(cargo); // Set the cargo to be edited in the form
+  };
+
+  // Handle updating a cargo item
+  const handleUpdateCargo = async (id, updatedCargo) => {
+    try {
+      const updatedItem = await updateCargo(id, updatedCargo);
+      const updatedCargoData = cargoData.map((cargo) =>
+        cargo.id === id ? updatedItem : cargo
+      );
+      setCargoData(updatedCargoData);
+      setSearchResults(updatedCargoData); // Update search results after update
+      setEditingCargo(null); // Clear editing state after update
+    } catch (error) {
+      console.error('Error updating cargo:', error);
+    }
+  };
+
+  // Handle search query
+  const handleSearch = async (query) => {
+    if (!query) {
+      setSearchResults(cargoData); // If no query, show all cargo
+      return;
+    }
+    try {
+      const results = await searchCargo(query);
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Error searching cargo:', error);
     }
   };
 
   return (
     <div className="cargo-management">
-      <h1>Manage Cargo</h1>
-      {error && <div className="error-message">{error}</div>}
-      {loading ? (
-        <p>Loading cargo data...</p>
-      ) : (
-        <>
-          <CargoForm onAddCargo={onAddCargo} />
-          <CargoList
-            cargoData={cargoData}
-            onDeleteCargo={onDeleteCargo}
-            onUpdateCargo={onUpdateCargo}
-          />
-        </>
-      )}
+      <h1>Cargo Management</h1>
+
+      {/* Search Component */}
+      <Search onSearchResults={handleSearch} />
+
+      {/* Cargo Form */}
+      <CargoForm 
+        onAddCargo={handleAddCargo} 
+        onUpdateCargo={handleUpdateCargo}
+        cargoToUpdate={editingCargo} // Passing editingCargo to pre-fill the form
+      />
+
+      {/* Cargo List */}
+      <CargoList
+        cargoData={searchResults} // Use search results for filtering
+        onDeleteCargo={handleDeleteCargo}
+        onEditCargo={handleEditCargo}
+      />
     </div>
   );
 }

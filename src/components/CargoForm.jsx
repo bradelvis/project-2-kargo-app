@@ -1,35 +1,37 @@
-import React, { useState } from 'react';
-import { addCargo } from "../services/api";  // Ensure this is correctly imported
-import "../App.css";  // Going one directory up from /components to /src
+// components/CargoForm.jsx
 
-function CargoForm({ setCargoData }) {
+import React, { useState, useEffect } from 'react';
+import "../App.css"; 
+
+function CargoForm({ onAddCargo, onUpdateCargo, cargoToUpdate }) {
   const [cargo, setCargo] = useState({ name: '', status: '', damage: false });
-  const [loading, setLoading] = useState(false); // For tracking submission state
-  const [error, setError] = useState(''); // For handling errors
+  const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    if (cargoToUpdate) {
+      setCargo(cargoToUpdate);
+    }
+  }, [cargoToUpdate]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!cargo.name || !cargo.status) {
       setError('Please provide both name and status for the cargo.');
       return;
     }
 
-    try {
-      setLoading(true); // Start loading state while submitting
-      const newCargo = await addCargo(cargo); // Assuming this returns the added cargo object
-      setCargoData(prevData => [...prevData, newCargo]);
-      setCargo({ name: '', status: '', damage: false }); // Reset form fields
-      setError(''); // Clear error if submission is successful
-    } catch (err) {
-      setError('Failed to add cargo. Please try again later.');
-      console.error('Error adding cargo:', err);
-    } finally {
-      setLoading(false); // End loading state after submission
+    if (cargoToUpdate) {
+      onUpdateCargo(cargo.id, cargo);
+    } else {
+      onAddCargo(cargo);
     }
+
+    setCargo({ name: '', status: '', damage: false });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="cargo-form">
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Cargo Name"
@@ -50,10 +52,8 @@ function CargoForm({ setCargoData }) {
           onChange={(e) => setCargo({ ...cargo, damage: e.target.checked })}
         />
       </label>
-      {error && <div className="error-message">{error}</div>} {/* Display error message */}
-      <button type="submit" disabled={loading}>
-        {loading ? 'Adding Cargo...' : 'Add Cargo'}
-      </button>
+      {error && <p className="error">{error}</p>}
+      <button type="submit">{cargoToUpdate ? 'Update Cargo' : 'Add Cargo'}</button>
     </form>
   );
 }

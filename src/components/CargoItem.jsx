@@ -1,28 +1,27 @@
+// components/CargoItem.jsx
+
 import React from 'react';
-import { addCargo } from "../services/api";
-import "../App.css";  // Going one directory up from /components to /src
+import { Link } from 'react-router-dom';
+import "../App.css"; 
 
-
-function CargoItem({ cargo, setCargoData }) {
+function CargoItem({ cargo, onDeleteCargo, onEditCargo }) {
   const handleDelete = () => {
-    deleteCargo(cargo.id).then(() => {
-      setCargoData(prevData => prevData.filter(item => item.id !== cargo.id));
-    });
+    onDeleteCargo(cargo.id);
   };
 
-  const handleUpdate = () => {
-    const updatedCargo = { ...cargo, status: 'Updated' }; // Example update
-    updateCargo(cargo.id, updatedCargo).then(() => {
-      setCargoData(prevData => prevData.map(item => (item.id === cargo.id ? updatedCargo : item)));
-    });
+  const handleEdit = () => {
+    onEditCargo(cargo);
   };
 
   return (
     <div className="cargo-item">
       <h3>{cargo.name}</h3>
       <p>Status: {cargo.status}</p>
+      <p>Damaged: {cargo.damage ? 'Yes' : 'No'}</p>
       <button onClick={handleDelete}>Delete</button>
-      <button onClick={handleUpdate}>Update</button>
+      <button onClick={handleEdit}>
+        <Link to={`/cargo-details/${cargo.id}`}>Edit</Link>
+      </button>
     </div>
   );
 }
