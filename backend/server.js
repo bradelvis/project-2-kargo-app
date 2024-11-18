@@ -16,5 +16,5 @@ server.use(router);
 
 // Start the server on port 5000
 server.listen(5000, () => {
-  console.log('JSON Server is running on http://localhost:5000');
+  console.log('JSON Server is running on http://localhost:3000');
 });

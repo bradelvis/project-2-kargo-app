@@ -3,7 +3,7 @@ import './index.css';  // Import your global styles
 import ReactDOM from 'react-dom';
 
 // API base URL
-const API_URL = 'http://localhost:5000/cargo';  // Update with your actual backend API URL
+const API_URL = 'https://project-2-kargo-app-2.onrender.com/cargo';  // Update with your actual backend API URL
 
 // Main Component for CRUD Operations
 const CargoApp = () => {

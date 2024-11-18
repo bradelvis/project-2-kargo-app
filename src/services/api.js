@@ -1,6 +1,6 @@
 // services/api.js
 
-const API_URL = 'http://localhost:3000/cargo'; // Replace with your backend URL
+const API_URL = 'https://project-2-kargo-app-2.onrender.com/cargo'; // Replace with your backend URL
 
 // Fetch all cargo items
 export const getCargo = async () => {
